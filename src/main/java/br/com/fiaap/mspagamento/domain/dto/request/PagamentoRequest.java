@@ -9,6 +9,10 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Schema(
+        name = "PagamentoRequest",
+        description = "Dados necessários para realizar um pagamento"
+)
 public record PagamentoRequest(
 
         @Schema(
