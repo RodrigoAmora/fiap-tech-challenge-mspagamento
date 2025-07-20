@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 
-@Schema(
-        description = "Status possíveis de um pagamento"
-)
+@Schema(description = "Status possíveis de um pagamento")
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum StatusPagamento {
 
