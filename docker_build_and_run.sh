@@ -17,6 +17,9 @@ echo -e "\n"
 
 sudo docker rmi -f rodrigoamora/rodrigo-springboot
 
+docker-compose down
+docker-compose down --rmi rodrigoamora/rodrigo-springboot
+
 echo -e "\n\n"
 echo -e "\033[01;32m###########################\033[01;32m"
 echo -e "\033[01;32m### Building images.... ###\033[01;32m"
