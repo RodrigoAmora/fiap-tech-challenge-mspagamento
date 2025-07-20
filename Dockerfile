@@ -23,8 +23,9 @@ COPY pom.xml .
 COPY src src
 
 # Configura permissões e executa build
-RUN chmod +x ./mvnw && \
-    ./mvnw clean package -DskipTests
+RUN ./mvnw dependency:go-offline -B
+RUN ./mvnw package -DskipTests
+RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
 # Define o comando de inicialização do seu projeto
 CMD ["java", "-jar", "/app/ms-pagamento.jar"]
