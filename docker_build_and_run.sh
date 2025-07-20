@@ -6,7 +6,7 @@
 
 ### Application ###
 rm -rf target/
-mvn clean install -DskipTests
+mvn clean install -Pdocker -DskipTests
 
 ### Docker ###
 echo -e "\n\n"
