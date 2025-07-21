@@ -1,16 +1,16 @@
 # fiap-tech-challenge-mspagamento
-Descrição:
-----------
+Descrição
+---------
 Micro-Serviço de Pagamento da fase 4 do Tech Challenge da pós da FIAP de Arquitetura de Software.
 
-Participantes:
---------------
+Participantes
+-------------
 * Bruno do Amor Divino da Paixão
 * Lucas Matheus Testa
 * Rodrigo de Lima Amora de Freitas
 
-Dependências:
--------------
+Dependências
+------------
 O projeto usa o Java 17 e as seguintes dependências:
 * Spring Boot 3.5.3
 * Lombok
@@ -18,3 +18,5 @@ O projeto usa o Java 17 e as seguintes dependências:
 * MongoDB
 * Swagger
 * OpenAPI
+
+<hr>
