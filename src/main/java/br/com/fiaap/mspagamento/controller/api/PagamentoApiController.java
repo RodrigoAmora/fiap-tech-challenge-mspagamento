@@ -4,7 +4,6 @@ import br.com.fiaap.mspagamento.controller.api.doc.PagamentoApiDoc;
 import br.com.fiaap.mspagamento.domain.Pagamento;
 import br.com.fiaap.mspagamento.domain.dto.request.PagamentoRequest;
 import br.com.fiaap.mspagamento.service.PagamentoService;
-import jakarta.websocket.server.PathParam;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
