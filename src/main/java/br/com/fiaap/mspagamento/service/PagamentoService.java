@@ -38,8 +38,10 @@ public class PagamentoService {
             case PROCESSANDO -> {
                 return atualizarSatusPagamento(pagamento, StatusPagamento.APROVADO);
             }
+            default -> {
+                return pagamento;
+            }
         }
-        return pagamento;
     }
 
     public Pagamento rejeitarPagamento(String idPagamento) {
