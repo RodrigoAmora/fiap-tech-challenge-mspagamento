@@ -27,7 +27,20 @@ public interface PagamentoApiDoc {
 
     @Operation(summary = "Atualização do status de pagamento")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Atualização do  status de pagamento pelo id.", content = @Content(schema = @Schema(implementation = Pagamento.class))),
+            @ApiResponse(responseCode = "200", description = "Atualização do status de pagamento pelo id.", content = @Content(schema = @Schema(implementation = Pagamento.class))),
     })
     ResponseEntity<Pagamento> atualizarSatus(String idPagamento);
+
+    @Operation(summary = "Rejeitar pagamento")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Rejeitar o pagamento passandoo id.", content = @Content(schema = @Schema(implementation = Pagamento.class))),
+    })
+    ResponseEntity<Pagamento> rejeitarPagamento(String idPagamento);
+
+    @Operation(summary = "Cancelar pagamento")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Cancelar o pagamento passandoo id.", content = @Content(schema = @Schema(implementation = Pagamento.class))),
+    })
+    ResponseEntity<Pagamento> cancelarPagamento(String idPagamento);
+
 }

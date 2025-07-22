@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Optional;
+import java.time.LocalDateTime;
 
 @Service
 public class PagamentoService {
@@ -26,28 +26,44 @@ public class PagamentoService {
     }
 
     public Pagamento buscarPedidoPeloId(String idPagamento) {
-        Optional<Pagamento> pagamentoOptional = pagamentoRepository.findById(idPagamento);
-        if (pagamentoOptional.isPresent()) {
-            return pagamentoOptional.get();
-        }
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pagamento não encontrado com o ID: " + idPagamento);
+        return buscarPagamentoPeloIdOuLancarExcecao(idPagamento);
     }
 
     public Pagamento atualizarSatus(String idPagamento) {
-        Optional<Pagamento> pagamentoOptional = pagamentoRepository.findById(idPagamento);
-        if (pagamentoOptional.isPresent()) {
-            Pagamento pagamento = pagamentoOptional.get();
-            switch (pagamento.getStatusPagamento()) {
-                case PENDENTE -> {
-                    pagamento.setStatusPagamento(StatusPagamento.PROCESSANDO);
-                }
-                case PROCESSANDO -> {
-                    pagamento.setStatusPagamento(StatusPagamento.APROVADO);
-                }
+        Pagamento pagamento = buscarPagamentoPeloIdOuLancarExcecao(idPagamento);
+        switch (pagamento.getStatusPagamento()) {
+            case PENDENTE -> {
+                return atualizarSatusPagamento(pagamento, StatusPagamento.PROCESSANDO);
             }
-            return pagamentoRepository.save(pagamento);
+            case PROCESSANDO -> {
+                return atualizarSatusPagamento(pagamento, StatusPagamento.APROVADO);
+            }
         }
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pagamento não encontrado com o ID: " + idPagamento);
+        return pagamento;
+    }
+
+    public Pagamento rejeitarPagamento(String idPagamento) {
+        Pagamento pagamento = buscarPagamentoPeloIdOuLancarExcecao(idPagamento);
+        return atualizarSatusPagamento(pagamento, StatusPagamento.REJEITADO);
+    }
+
+    public Pagamento cancelarPagamento(String idPagamento) {
+        Pagamento pagamento = buscarPagamentoPeloIdOuLancarExcecao(idPagamento);
+        return atualizarSatusPagamento(pagamento, StatusPagamento.CANCELADO);
+    }
+
+    private Pagamento buscarPagamentoPeloIdOuLancarExcecao(String idPagamento) {
+        return pagamentoRepository.findById(idPagamento)
+                                    .orElseThrow(() -> new ResponseStatusException(
+                                            HttpStatus.NOT_FOUND,
+                                            "Pagamento não encontrado com o ID: " + idPagamento
+                                    ));
+    }
+
+    private Pagamento atualizarSatusPagamento(Pagamento pagamento, StatusPagamento statusPagamento) {
+        pagamento.setAtualizacaoStatus(LocalDateTime.now());
+        pagamento.setStatusPagamento(statusPagamento);
+        return pagamentoRepository.save(pagamento);
     }
 
 }

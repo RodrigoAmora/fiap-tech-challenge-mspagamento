@@ -32,9 +32,21 @@ public class PagamentoApiController implements PagamentoApiDoc {
     }
 
     @Override
-    @PutMapping(value = {"/{idPagamento}"})
+    @PutMapping(value = {"/{idPagamento}/atualizarSatus"})
     public ResponseEntity<Pagamento> atualizarSatus(@PathVariable(name = "idPagamento") String idPagamento) {
         return ResponseEntity.ok(pagamentoService.atualizarSatus(idPagamento));
+    }
+
+    @Override
+    @PostMapping(value = {"/{idPagamento}/rejeitar"})
+    public ResponseEntity<Pagamento> rejeitarPagamento(@PathVariable(name = "idPagamento") String idPagamento) {
+        return ResponseEntity.ok(pagamentoService.rejeitarPagamento(idPagamento));
+    }
+
+    @Override
+    @PostMapping(value = {"/{idPagamento}/cancelar"})
+    public ResponseEntity<Pagamento> cancelarPagamento(@PathVariable(name = "idPagamento") String idPagamento) {
+        return ResponseEntity.ok(pagamentoService.cancelarPagamento(idPagamento));
     }
 
 }
