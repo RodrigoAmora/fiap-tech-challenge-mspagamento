@@ -40,7 +40,7 @@ Banco de dados
 O projeto usa o MongoDB como banco da dados.
 
 Para rodar o MongoDB localmente, baixe o MongoDB para a sua máquina, descompacte em algum diretório em configure a variável de ambiente MONGO_HOME com o valor `diretório_do_mongo/bin`. <br>
-Após isso, no terminal vá até o `diretório_do_mongo/bin` e execute o comoando:
+Após isso, no terminal vá até o `diretório_do_mongo/bin` e execute o comoando para iniciar o MongoDB:
 ```shell script
 sudo ./mongod --dbpath /usr/local/var/mongodb
 ```
