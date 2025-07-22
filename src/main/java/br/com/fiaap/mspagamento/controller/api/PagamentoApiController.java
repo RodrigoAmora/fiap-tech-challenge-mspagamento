@@ -4,6 +4,8 @@ import br.com.fiaap.mspagamento.controller.api.doc.PagamentoApiDoc;
 import br.com.fiaap.mspagamento.domain.Pagamento;
 import br.com.fiaap.mspagamento.domain.dto.request.PagamentoRequest;
 import br.com.fiaap.mspagamento.service.PagamentoService;
+import io.swagger.v3.oas.annotations.headers.Header;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +20,7 @@ public class PagamentoApiController implements PagamentoApiDoc {
     }
 
     @Override
-    @PostMapping
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Pagamento> realizarPagamento(@RequestBody PagamentoRequest request) {
         return ResponseEntity.ok(pagamentoService.realizarPagamento(request));
     }
