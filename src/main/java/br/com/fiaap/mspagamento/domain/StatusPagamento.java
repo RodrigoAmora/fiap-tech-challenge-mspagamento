@@ -18,7 +18,10 @@ public enum StatusPagamento {
     PENDENTE("PENDENTE"),
 
     @Schema(description = "Pagamento foi rejeitado")
-    REJEITADO("REJEITADO");
+    REJEITADO("REJEITADO"),
+
+    @Schema(description = "Pagamento foi cancelado")
+    CANCELADO("CANCELADO");
 
     private String status;
 
