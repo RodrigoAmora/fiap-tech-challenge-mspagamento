@@ -19,10 +19,10 @@ public class Pagamento {
         private String idPagamento;
 
         @JsonProperty("id_pedido")
-        private UUID idPedido;
+        private String idPedido;
 
         @JsonProperty("id_cliente")
-        private UUID idCliente;
+        private String idCliente;
 
         @JsonProperty("total")
         private BigDecimal valorTotal;

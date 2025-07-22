@@ -21,14 +21,14 @@ public record PagamentoRequest(
                 example = "abf3a673-5211-483d-a25e-ce060baed2a0"
         )
         @JsonProperty("id_pedido")
-        UUID idPedido,
+        String idPedido,
 
         @Schema(
                 description = "Identificador único do cliente",
                 example = "1a3f0c88-7680-4c13-a439-802ca48f377c"
         )
         @JsonProperty("id_cliente")
-        UUID idCliente,
+        String idCliente,
 
         @JsonProperty("cartao")
         Cartao cartao,
