@@ -16,22 +16,22 @@ public class Pagamento {
 
         @Id
         @JsonProperty("id")
-        String idPagamento;
+        private String idPagamento;
 
         @JsonProperty("id_pedido")
-        UUID idPedido;
+        private UUID idPedido;
 
         @JsonProperty("id_cliente")
-        UUID idCliente;
+        private UUID idCliente;
 
         @JsonProperty("total")
-        BigDecimal valorTotal;
+        private BigDecimal valorTotal;
 
         @JsonProperty("status")
-        StatusPagamento statusPagamento;
+        private StatusPagamento statusPagamento;
 
         @JsonProperty("data")
         @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-        LocalDateTime dataPagamento;
+        private LocalDateTime dataPagamento;
 
 }
