@@ -41,10 +41,11 @@ public record PagamentoRequest(
         )
         @JsonProperty("total")
         BigDecimal valorTotal
+
 ) {
         public Pagamento mapPagamento() {
                 Pagamento pagamento = new Pagamento();
-                //pagamento.setCartao(cartao);
+                pagamento.setAtualizacaoStatus(null);
                 pagamento.setDataPagamento(LocalDateTime.now());
                 pagamento.setIdCliente(idCliente);
                 pagamento.setIdPedido(idPedido);

@@ -34,4 +34,8 @@ public class Pagamento {
         @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
         private LocalDateTime dataPagamento;
 
+        @JsonProperty("atualizacao_status")
+        @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+        private LocalDateTime atualizacaoStatus;
+
 }
