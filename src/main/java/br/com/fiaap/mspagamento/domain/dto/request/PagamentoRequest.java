@@ -1,5 +1,6 @@
 package br.com.fiaap.mspagamento.domain.dto.request;
 
+import br.com.fiaap.mspagamento.domain.Cartao;
 import br.com.fiaap.mspagamento.domain.Pagamento;
 import br.com.fiaap.mspagamento.domain.StatusPagamento;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -29,9 +30,12 @@ public record PagamentoRequest(
         @JsonProperty("id_cliente")
         UUID idCliente,
 
+        @JsonProperty("cartao")
+        Cartao cartao,
+
         @Schema(
                 description = "Valor do pagamento",
-                example = "159.90",
+                example = "159.99",
                 minimum = "0.01",
                 required = true
         )
@@ -40,6 +44,7 @@ public record PagamentoRequest(
 ) {
         public Pagamento mapPagamento() {
                 Pagamento pagamento = new Pagamento();
+                //pagamento.setCartao(cartao);
                 pagamento.setDataPagamento(LocalDateTime.now());
                 pagamento.setIdCliente(idCliente);
                 pagamento.setIdPedido(idPedido);
