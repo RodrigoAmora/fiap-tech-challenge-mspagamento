@@ -24,7 +24,7 @@ public class CartaoValidator {
         validarCodigoSeguranca(cartao.getCodigoSeguranca());
     }
 
-    public static void validarNumeroCartao(String numeroCartao) {
+    private static void validarNumeroCartao(String numeroCartao) {
         if (numeroCartao == null || numeroCartao.trim().isEmpty()) {
             throw new CartaoInvalidoException("Número do cartão é obrigatório");
         }
@@ -57,7 +57,7 @@ public class CartaoValidator {
         return (soma % 10 == 0);
     }
 
-    public static void validarNomeTitular(String nomeTitular) {
+    private static void validarNomeTitular(String nomeTitular) {
         if (nomeTitular == null || nomeTitular.trim().isEmpty()) {
             throw new CartaoInvalidoException("Nome do titular é obrigatório");
         }
@@ -71,7 +71,7 @@ public class CartaoValidator {
         }
     }
 
-    public static void validarDataValidade(String dataValidade) {
+    private static void validarDataValidade(String dataValidade) {
         if (dataValidade == null || dataValidade.trim().isEmpty()) {
             throw new CartaoInvalidoException("Data de validade é obrigatória");
         }
@@ -93,7 +93,7 @@ public class CartaoValidator {
         }
     }
 
-    public static void validarCodigoSeguranca(String cvv) {
+    private static void validarCodigoSeguranca(String cvv) {
         if (cvv == null || cvv.trim().isEmpty()) {
             throw new CartaoInvalidoException("Código de segurança é obrigatório");
         }
@@ -102,4 +102,5 @@ public class CartaoValidator {
             throw new CartaoInvalidoException("Código de segurança inválido: deve conter 3 ou 4 dígitos");
         }
     }
+
 }
