@@ -73,8 +73,8 @@ Para iniciar a aplicação, execute o comando no terminal na raiz do projeto:
 mvn spring-boot:run
 ```
 
-Rodando o projeto Docker
-------------------------
+Rodando o projeto no Docker
+---------------------------
 Para rodar o projeto em um container Docker, primeiro deve-se gerar o .jar de cada um dos projetos.<br>
 Após isso, deve-se gerar o build das imagens e subir os containers do Docker.<br><br>
 <b>Fazendo o build das imagens:</b>
