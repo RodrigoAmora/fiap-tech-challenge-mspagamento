@@ -11,9 +11,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -135,6 +140,20 @@ class PagamentoServiceTest {
     }
 
     @Test
+    void aprovarPagamento_QuandoDadosValidos_DeveRetornarPagamentoAprovado() {
+        when(pagamentoRepository.findById(pagamentoEsperado.getIdPagamento())).thenReturn(Optional.of(pagamentoEsperado));
+        when(pagamentoRepository.save(any(Pagamento.class))).thenReturn(pagamentoEsperado);
+
+        Pagamento resultado = pagamentoService.aprovarPagamento(pagamentoEsperado.getIdPagamento());
+
+        assertNotNull(resultado);
+        assertEquals(StatusPagamento.APROVADO, resultado.getStatusPagamento());
+        assertNotNull(resultado.getAtualizacaoStatus());
+        verify(pagamentoRepository).findById(pagamentoEsperado.getIdPagamento());
+        verify(pagamentoRepository).save(any(Pagamento.class));
+    }
+
+    @Test
     void rejeitarPagamento_QuandoDadosValidos_DeveRetornarPagamentoRejeitado() {
         when(pagamentoRepository.findById(pagamentoEsperado.getIdPagamento())).thenReturn(Optional.of(pagamentoEsperado));
         when(pagamentoRepository.save(any(Pagamento.class))).thenReturn(pagamentoEsperado);
@@ -161,4 +180,63 @@ class PagamentoServiceTest {
         verify(pagamentoRepository).findById(pagamentoEsperado.getIdPagamento());
         verify(pagamentoRepository).save(any(Pagamento.class));
     }
+
+    @Test
+    void deveRetornarPaginaComPagamentosDoCliente() {
+        String idCliente = "cliente123";
+        int page = 0;
+        int size = 20;
+
+        List<Pagamento> pagamentos = List.of(
+                new Pagamento(),
+                new Pagamento()
+        );
+
+        Page<Pagamento> paginaPagamentos = new PageImpl<>(pagamentos);
+
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.ASC, "id");
+
+        when(pagamentoRepository.findByIdCliente(eq(idCliente), any(PageRequest.class)))
+                .thenReturn(paginaPagamentos);
+
+        Page<Pagamento> resultado = pagamentoService.buscarPagamentosDoCliente(idCliente, page, size);
+
+
+        assertNotNull(resultado);
+        assertEquals(2, resultado.getContent().size());
+        assertEquals(paginaPagamentos, resultado);
+    }
+
+    @Test
+    void deveRetornarPaginaVaziaQuandoNaoExistemPagamentosParaCliente() {
+        String idCliente = "clienteSemPagamentos";
+        int page = 0;
+        int size = 20;
+
+        Page<Pagamento> paginaVazia = new PageImpl<>(List.of());
+
+        when(pagamentoRepository.findByIdCliente(eq(idCliente), any(PageRequest.class)))
+                .thenReturn(paginaVazia);
+
+        Page<Pagamento> resultado = pagamentoService.buscarPagamentosDoCliente(idCliente, page, size);
+
+
+        assertNotNull(resultado);
+        assertTrue(resultado.getContent().isEmpty());
+        assertEquals(0, resultado.getTotalElements());
+    }
+
+    @Test
+    void deveManterOrdenacaoAscendentePorId() {
+        String idCliente = "cliente123";
+        int page = 0;
+        int size = 20;
+
+        pagamentoService.buscarPagamentosDoCliente(idCliente, page, size);
+
+        PageRequest expectedPageRequest = PageRequest.of(page, size, Sort.Direction.ASC, "id");
+
+        verify(pagamentoRepository).findByIdCliente(eq(idCliente), eq(expectedPageRequest));
+    }
+
 }
