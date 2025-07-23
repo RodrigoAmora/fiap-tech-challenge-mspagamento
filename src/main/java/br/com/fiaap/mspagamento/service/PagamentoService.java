@@ -5,6 +5,9 @@ import br.com.fiaap.mspagamento.domain.StatusPagamento;
 import br.com.fiaap.mspagamento.domain.dto.request.PagamentoRequest;
 import br.com.fiaap.mspagamento.repository.PagamentoRepository;
 import br.com.fiaap.mspagamento.validator.CartaoValidator;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -44,6 +47,11 @@ public class PagamentoService {
         }
     }
 
+    public Pagamento aprovarPagamento(String idPagamento) {
+        Pagamento pagamento = buscarPagamentoPeloIdOuLancarExcecao(idPagamento);
+        return atualizarSatusPagamento(pagamento, StatusPagamento.APROVADO);
+    }
+
     public Pagamento rejeitarPagamento(String idPagamento) {
         Pagamento pagamento = buscarPagamentoPeloIdOuLancarExcecao(idPagamento);
         return atualizarSatusPagamento(pagamento, StatusPagamento.REJEITADO);
@@ -60,6 +68,11 @@ public class PagamentoService {
                                             HttpStatus.NOT_FOUND,
                                             "Pagamento não encontrado com o ID: " + idPagamento
                                     ));
+    }
+
+    public Page<Pagamento> buscarPagamentosDoCliente(String idCliente, int page, int size) {
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.ASC, "id");
+        return pagamentoRepository.findByIdCliente(idCliente, pageRequest);
     }
 
     private Pagamento atualizarSatusPagamento(Pagamento pagamento, StatusPagamento statusPagamento) {

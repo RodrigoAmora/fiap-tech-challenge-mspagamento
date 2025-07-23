@@ -8,7 +8,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Tag(name = "Endpoints de pagamento")
 public interface PagamentoApiDoc {
@@ -31,6 +34,12 @@ public interface PagamentoApiDoc {
     })
     ResponseEntity<Pagamento> atualizarSatus(String idPagamento);
 
+    @Operation(summary = "Aprpvar pagamento")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Aprpvar o pagamento passandoo id.", content = @Content(schema = @Schema(implementation = Pagamento.class))),
+    })
+    ResponseEntity<Pagamento> aprovarPagamento(@PathVariable(name = "idPagamento") String idPagamento);
+
     @Operation(summary = "Rejeitar pagamento")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Rejeitar o pagamento passandoo id.", content = @Content(schema = @Schema(implementation = Pagamento.class))),
@@ -43,4 +52,9 @@ public interface PagamentoApiDoc {
     })
     ResponseEntity<Pagamento> cancelarPagamento(String idPagamento);
 
+    @Operation(summary = "Pagamento do cliente")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Buscar todos oo pagamento de um cliente.", content = @Content(schema = @Schema(implementation = Pagamento.class))),
+    })
+    ResponseEntity<Page<Pagamento>> buscarPagamentosDoCliente(String idCliente, int page, int size);
 }
