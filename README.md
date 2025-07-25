@@ -1,4 +1,5 @@
-[![codecov](https://codecov.io/github/RodrigoAmora/fiap-tech-challenge-mspagamento/graph/badge.svg?token=OJIXJUABQO)](https://codecov.io/github/RodrigoAmora/fiap-tech-challenge-mspagamento)
+[![Test Coverage](https://img.shields.io/codecov/c/github/RodrigoAmora/fiap-tech-challenge-mspagamento/main)](https://codecov.io/gh/RodrigoAmora/fiap-tech-challenge-mspagamento)
+
 
 
 # fiap-tech-challenge-mspagamento
