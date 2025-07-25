@@ -1,4 +1,7 @@
 [![codecov](https://codecov.io/gh/RodrigoAmora/fiap-tech-challenge-mspagamento/branch/main/graph/badge.svg?token=f6823cab-fa7c-4d1b-9216-2c83c01de7c9)](https://codecov.io/gh/RodrigoAmora/fiap-tech-challenge-mspagamento)
+<br>
+
+![Test Coverage](https://github.com/RodrigoAmora/fiap-tech-challenge-mspagamento/actions/workflows/test-coverage.yml/badge.svg)
 
 # fiap-tech-challenge-mspagamento
 Descrição
