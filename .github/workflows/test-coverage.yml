@@ -24,7 +24,10 @@ jobs:
       run: mvn clean verify
 
     - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v5
+      uses: codecov/codecov-action@v3
       with:
-       token: ${{ secrets.CODECOV_TOKEN }}
-       slug: RodrigoAmora/fiap-tech-challenge-mspagamento
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./target/site/jacoco/jacoco.xml
+        flags: unittests
+        name: codecov-umbrella
+        fail_ci_if_error: true
