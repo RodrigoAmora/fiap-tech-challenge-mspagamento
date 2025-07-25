@@ -1,4 +1,4 @@
-[![codecov](https://codecov.io/gh/seu-usuario/seu-repositorio/branch/main/graph/badge.svg)](https://codecov.io/gh/seu-usuario/seu-repositorio)
+[![codecov](https://codecov.io/gh/seu-usuario/seu-repositorio/branch/main/graph/badge.svg)](https://codecov.io/gh/RodrigoAmora/fiap-tech-challenge-mspagamento)
 
 # fiap-tech-challenge-mspagamento
 Descrição
