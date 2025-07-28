@@ -59,12 +59,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v3
+    
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
+
+    - name: Copy files to EC2
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USERNAME }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        source: "docker-compose.yml,.env,Dockerfile"
+        target: "/home/${{ secrets.EC2_USERNAME }}/app"
 
     - name: Deploy to EC2
       uses: appleboy/ssh-action@master
@@ -73,14 +84,8 @@ jobs:
         username: ${{ secrets.EC2_USERNAME }}
         key: ${{ secrets.EC2_SSH_KEY }}
         script: |
-          # Parar e remover containers antigos
+          cd /home/${{ secrets.EC2_USERNAME }}/app
           docker-compose down || true
-          
-          # Remover imagens antigas
           docker rmi rodrigoamora/rodrigo-springboot:latest || true
-          
-          # Puxar nova imagem
           docker pull rodrigoamora/rodrigo-springboot:latest
-          
-          # Iniciar aplicação com docker-compose
           docker-compose up -d
