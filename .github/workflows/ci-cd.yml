@@ -25,19 +25,19 @@ jobs:
       with:
         mongodb-version: '6.0'
 
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
+    - name: Build and Test
+      run: mvn -B verify
 
-    - name: Run Tests
-      run: mvn test
-
-    - name: Generate JaCoCo Coverage Report
-      run: mvn jacoco:report
-
-    - name: Upload coverage to Codecov
+    - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v3
       with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./target/coverage-reports/jacoco/jacoco.xml
+        flags: unittests
+        name: codecov-umbrella
         fail_ci_if_error: true
+        verbose: true
+        directory: ./target/coverage-reports/jacoco/
 
     - name: Build Docker Image
       run: docker build -t rodrigoamora/ms-pagamento:latest .
