@@ -20,6 +20,13 @@ public class PagamentoApiController implements PagamentoApiDoc {
     }
 
     @Override
+    @GetMapping
+    public ResponseEntity<Page<Pagamento>> listarPagamentos(@RequestParam(value = "page", required = false, defaultValue = "0") int page,
+                                                            @RequestParam(value = "size", required = false, defaultValue = "20") int size) {
+        return ResponseEntity.ok(pagamentoService.listarPagamentos(page, size));
+    }
+
+    @Override
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Pagamento> realizarPagamento(@RequestBody PagamentoRequest request) {
         return ResponseEntity.ok(pagamentoService.realizarPagamento(request));

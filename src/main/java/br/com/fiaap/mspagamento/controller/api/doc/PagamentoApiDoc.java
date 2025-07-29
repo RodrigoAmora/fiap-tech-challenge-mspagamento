@@ -11,10 +11,15 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Tag(name = "Endpoints de pagamento")
 public interface PagamentoApiDoc {
+
+    @Operation(summary = "Listar pagamento")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Listar todos os pagamentos realizados.", content = @Content(schema = @Schema(implementation = Pagamento.class))),
+    })
+    ResponseEntity<Page<Pagamento>> listarPagamentos(int page, int size);
 
     @Operation(summary = "Realização de pagamento")
     @ApiResponses(value = {
@@ -52,9 +57,9 @@ public interface PagamentoApiDoc {
     })
     ResponseEntity<Pagamento> cancelarPagamento(String idPagamento);
 
-    @Operation(summary = "Pagamento do cliente")
+    @Operation(summary = "Pagamentos do cliente")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Buscar todos oo pagamento de um cliente.", content = @Content(schema = @Schema(implementation = Pagamento.class))),
+            @ApiResponse(responseCode = "200", description = "Buscar todos os pagamento de um cliente.", content = @Content(schema = @Schema(implementation = Pagamento.class))),
     })
     ResponseEntity<Page<Pagamento>> buscarPagamentosDoCliente(String idCliente, int page, int size);
 }
