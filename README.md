@@ -64,6 +64,7 @@ mvn clean install -P{profile} -DskipTests
 
 Rodando os testes
 -----------------
+<b>A cobertura de testes do projeto:</b>
 ![A cobertura de testes do projeto:](imagens/cobertura-testes.png)
 
 
