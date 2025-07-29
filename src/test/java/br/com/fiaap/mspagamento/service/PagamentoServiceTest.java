@@ -208,8 +208,24 @@ class PagamentoServiceTest {
     }
 
     @Test
+    void deveRetornarPaginaComPagamentosDoClienteOrdenadoPorDataPagamento() {
+        Page<Pagamento> paginaVazia = new PageImpl<>(List.of(pagamentoEsperado));
+
+        when(pagamentoRepository.findAll(any(PageRequest.class)))
+                                .thenReturn(paginaVazia);
+
+        int page = 0;
+        int size = 20;
+        Page<Pagamento> resultado = pagamentoService.listarPagamentos(page, size);
+
+        assertFalse(resultado.getContent().isEmpty());
+        assertEquals(1, resultado.getTotalElements());
+        assertEquals(pagamentoEsperado.getIdPagamento(), resultado.getContent().get(0).getIdPagamento());
+    }
+
+    @Test
     void deveRetornarPaginaVaziaQuandoNaoExistemPagamentosParaCliente() {
-        String idCliente = "clienteSemPagamentos";
+        String idCliente = "1234567890";
         int page = 0;
         int size = 20;
 
