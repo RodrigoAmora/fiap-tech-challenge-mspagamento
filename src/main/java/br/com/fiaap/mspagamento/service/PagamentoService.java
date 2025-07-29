@@ -70,6 +70,11 @@ public class PagamentoService {
                                     ));
     }
 
+    public Page<Pagamento> listarPagamentos(int page, int size) {
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.ASC, "id");
+        return pagamentoRepository.findAll(pageRequest);
+    }
+
     public Page<Pagamento> buscarPagamentosDoCliente(String idCliente, int page, int size) {
         PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.ASC, "id");
         return pagamentoRepository.findByIdCliente(idCliente, pageRequest);
