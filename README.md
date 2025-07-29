@@ -1,4 +1,4 @@
-[![Test Coverage](https://img.shields.io/codecov/c/github/RodrigoAmora/fiap-tech-challenge-mspagamento/main)](https://codecov.io/gh/RodrigoAmora/fiap-tech-challenge-mspagamento)
+[![Coverage Status](https://codecov.io/gh/RodrigoAmora/fiap-tech-challenge-mspagamento/branch/main/graph/badge.svg)](https://codecov.io/gh/RodrigoAmora/fiap-tech-challenge-mspagamento)
 
 
 
@@ -64,6 +64,9 @@ mvn clean install -P{profile} -DskipTests
 
 Rodando os testes
 -----------------
+![A cobertura de testes do projeto:](imagens/CleanDiagrama.jpg)
+
+
 Para rodar os testes, execute o comando no terminal na raiz do projeto:
 ```shell script
 mvn test
