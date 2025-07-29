@@ -17,4 +17,9 @@ public class DocumentationController {
         return new RedirectView("/redoc.html");
     }
 
+    @GetMapping("/health")
+    public RedirectView health() {
+        return new RedirectView("/actuator/health");
+    }
+
 }
