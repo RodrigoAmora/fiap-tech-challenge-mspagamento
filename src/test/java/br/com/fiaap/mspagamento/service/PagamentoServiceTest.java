@@ -140,6 +140,21 @@ class PagamentoServiceTest {
     }
 
     @Test
+    void atualizarStatus_QuandoPagamentoRejeitado_DeveAtualizarNada() {
+        Pagamento pagamentoProcessando = pagamentoEsperado;
+        pagamentoProcessando.setStatusPagamento(StatusPagamento.REJEITADO);
+
+        when(pagamentoRepository.findById(pagamentoEsperado.getIdPagamento())).thenReturn(Optional.of(pagamentoProcessando));
+        when(pagamentoRepository.save(any(Pagamento.class))).thenReturn(pagamentoProcessando);
+
+        Pagamento resultado = pagamentoService.atualizarSatus(pagamentoProcessando.getIdPagamento());
+
+        assertNotNull(resultado);
+        assertEquals(StatusPagamento.REJEITADO, resultado.getStatusPagamento());
+        verify(pagamentoRepository).findById(pagamentoProcessando.getIdPagamento());
+    }
+
+    @Test
     void aprovarPagamento_QuandoDadosValidos_DeveRetornarPagamentoAprovado() {
         when(pagamentoRepository.findById(pagamentoEsperado.getIdPagamento())).thenReturn(Optional.of(pagamentoEsperado));
         when(pagamentoRepository.save(any(Pagamento.class))).thenReturn(pagamentoEsperado);
