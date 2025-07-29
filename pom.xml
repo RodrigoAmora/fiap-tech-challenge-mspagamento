@@ -74,6 +74,12 @@
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
 
+        <!-- Actuator -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
         <!-- Swagger -->
         <dependency>
             <groupId>org.springdoc</groupId>
@@ -157,6 +163,32 @@
                     <rules>
                         <rule>
                             <element>BUNDLE</element>
+                            <limits>
+                                <limit>
+                                    <counter>LINE</counter>
+                                    <value>COVEREDRATIO</value>
+                                    <minimum>0.80</minimum>
+                                </limit>
+                            </limits>
+                        </rule>
+
+                        <rule>
+                            <element>CLASS</element>
+                            <excludes>
+                                <!-- Excluir uma classe específica -->
+                                <exclude>**/MsPagamentoApplication.class</exclude>
+
+                                <!-- Excluir todos os arquivos em um pacote específico -->
+                                <exclude>br/com/fiap/mspagamento/config/*</exclude>
+                                <exclude>br/com/fiap/mspagamento/controller/*</exclude>
+                                <exclude>br/com/fiap/mspagamento/domain/*</exclude>
+                                <exclude>br/com/fiap/mspagamento/exception/*</exclude>
+                                <exclude>br/com/fiap/mspagamento/repository/*</exclude>
+
+                                <!-- Excluir usando padrões mais específicos -->
+                                <exclude>**/model/*DTO.*</exclude>
+                                <exclude>**/entity/*Entity.*</exclude>
+                            </excludes>
                             <limits>
                                 <limit>
                                     <counter>LINE</counter>
