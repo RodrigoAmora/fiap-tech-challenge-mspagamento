@@ -64,7 +64,7 @@ mvn clean install -P{profile} -DskipTests
 
 Rodando os testes
 -----------------
-![A cobertura de testes do projeto:](imagens/CleanDiagrama.jpg)
+![A cobertura de testes do projeto:](imagens/cobertura-testes.png)
 
 
 Para rodar os testes, execute o comando no terminal na raiz do projeto:
