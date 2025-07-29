@@ -1,7 +1,6 @@
 [![Coverage Status](https://codecov.io/gh/RodrigoAmora/fiap-tech-challenge-mspagamento/branch/main/graph/badge.svg)](https://codecov.io/gh/RodrigoAmora/fiap-tech-challenge-mspagamento)
 
 
-
 # fiap-tech-challenge-mspagamento
 Descrição
 ---------
@@ -24,6 +23,7 @@ O projeto usa o Java 17 e as seguintes dependências:
 * Swagger
 * OpenAPI
 * jUnit
+* Mockito
 
 Documentação da API
 -------------------
@@ -37,6 +37,13 @@ http://localhost:8080/swagger
 <b>Documentação da API via Redoc:</b>
 ```shell script
 http://localhost:8080/redoc
+```
+
+Monitoração do projeto
+----------------------
+A monitoração do projeto para verificar a saúde da aplicação e os recursos utilizados:
+```shell script
+http://localhost:8080/health
 ```
 
 Banco de dados
@@ -83,7 +90,7 @@ mvn spring-boot:run
 
 Rodando o projeto no Docker
 ---------------------------
-Para rodar o projeto em um container Docker, primeiro deve-se gerar o .jar de cada um dos projetos.<br>
+Para rodar o projeto em um container Docker, primeiro deve-se gerar o .jar do projeto.<br>
 Após isso, deve-se gerar o build das imagens e subir os containers do Docker.<br><br>
 <b>Fazendo o build das imagens:</b>
 ```shell script
