@@ -1,0 +1,204 @@
+{
+	"info": {
+		"_postman_id": "d34cc309-4716-4920-95e4-7b0abfdd3c2e",
+		"name": "ms-pagamento-prod",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8543961"
+	},
+	"item": [
+		{
+			"name": "Listar Pagamentos",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base-url}}/api/pagamento",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"api",
+						"pagamento"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Realizar Pagamento",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id_pedido\": \"abf3a673-5211-483d-a25e-ce060baed2a0\",\n  \"id_cliente\": \"1a3f0c88-7680-4c13-a439-802ca48f377c\",\n  \"cartao\": {\n    \"numero_cartao\": \"5486416717179402\",\n    \"nome_titular\": \"Fulano da Silva\",\n    \"data_validade\": \"07/27\",\n    \"cvv\": \"276\",\n    \"bandeira\": \"VISA\"\n  },\n  \"total\": 159.99\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/api/pagamento",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"api",
+						"pagamento"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Pagamento por id",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base-url}}/api/pagamento/68898d553d946a998bb1956c",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"api",
+						"pagamento",
+						"68898d553d946a998bb1956c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar Status do Pagamento",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{base-url}}/api/pagamento/68898d553d946a998bb1956c/atualizarSatus",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"api",
+						"pagamento",
+						"68898d553d946a998bb1956c",
+						"atualizarSatus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Rejeitar Pagamento",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{base-url}}/api/pagamento/68898d553d946a998bb1956c/rejeitar",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"api",
+						"pagamento",
+						"68898d553d946a998bb1956c",
+						"rejeitar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cancelar Pagamento",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{base-url}}/api/pagamento/68898d553d946a998bb1956c/cancelar",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"api",
+						"pagamento",
+						"68898d553d946a998bb1956c",
+						"cancelar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aprovar Pagamento",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{base-url}}/api/pagamento/68898d553d946a998bb1956c/aprovar",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"api",
+						"pagamento",
+						"68898d553d946a998bb1956c",
+						"aprovar"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base-url",
+			"value": "http://54.198.207.129",
+			"type": "string"
+		}
+	]
+}
