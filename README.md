@@ -39,6 +39,9 @@ http://localhost:8080/swagger
 http://localhost:8080/redoc
 ```
 
+##
+Na pasta <b>`Postman`</b> contém a collection para usar os endpoints via Postman.
+
 Monitoração do projeto
 ----------------------
 A monitoração do projeto para verificar a saúde da aplicação e os recursos utilizados:
@@ -50,11 +53,19 @@ Banco de dados
 --------------
 O projeto usa o MongoDB como banco da dados.
 
-Para rodar o MongoDB localmente, baixe o MongoDB para a sua máquina, descompacte em algum diretório em configure a variável de ambiente MONGO_HOME com o valor `diretório_do_mongo/bin`. <br>
-Após isso, no terminal vá até o `diretório_do_mongo/bin` e execute o comoando para iniciar o MongoDB:
+Para rodar o MongoDB localmente, baixe o MongoDB para a sua máquina, descompacte em algum diretório em configure a variável de ambiente MONGO_HOME com o valor <b>`diretório_do_mongo/bin`</b>. <br>
+Após isso, no terminal vá até o <b>`MONGO_HOME/bin`</b> e execute o comando abaixo para iniciar o MongoDB:
 ```shell script
 sudo ./mongod --dbpath /usr/local/var/mongodb
 ```
+
+##
+<b>Vairáveis de ambiente:</b>
+Crie o arquivo `.env` na raiz do projeto e adicione as seguintes variáveis:
+* MONGO_EXPRESS_USERNAME - Usuário do Mongo Express
+* MONGO_EXPRESS_PASSWORD - Senha do Mongo Express
+* MONGO_ROOT_USERNAME - Usuário do MongoDB
+* MONGO_ROOT_PASSWORD - Senha do MongoDB
 
 ##
 Após baixar e descompactar o Mongo na sua máquina e cria a variável de ambiente MONGO_HOME, você pode excutar o Shellscript run_mongo na raiz do projeto.
